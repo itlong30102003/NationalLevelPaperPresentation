@@ -1,0 +1,58 @@
+﻿@model NationalLevelPaperPresentation.Models.User
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/LayoutNavbar.cshtml";
+}
+
+<style>
+    /* Đặt kích thước chữ cho các phần tử trong phần form */
+    form {
+        font-size: 14px; /* Điều chỉnh kích thước chữ theo ý muốn */
+    }
+
+    /* Đặt kích thước chữ cho nhãn và input trong form */
+    label, input {
+        font-size: 10px; /* Điều chỉnh kích thước chữ theo ý muốn */
+    }
+
+    /* Đặt kích thước chữ cho các thông báo validation */
+    .text-danger {
+        font-size: 10px; /* Điều chỉnh kích thước chữ theo ý muốn */
+    }
+
+    /* Đặt kích thước chữ cho các phần tử khác trong form nếu cần */
+    /*Thêm các quy tắc CSS khác nếu cần thiết*/
+</style>
+
+
+<div style="display: flex; justify-content: center; height: 80vh;top:30px;padding-bottom:100px">
+    <form style="border: solid; border-width: 3px; border-radius: 10px; padding: 20px;" action="/User/SignUp" method="post">
+        <div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2>Sign Up Employers</h2>
+            <label for="exampleFormControlInput2" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" aria-describedby="passwordHelpBlock" placeholder="Username" style="min-width:500px" name="USERNAME">
+            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+
+            <label for="inputPassword5" class="form-label">Email</label>
+            <input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Email" style="min-width:500px" name="Email">
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            <div id="passwordHelpBlock" class="form-text">
+                Please enter email.com
+            </div>
+            <label for="inputPassword5" class="form-label">Password</label>
+            <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Password" style="min-width:500px" name="PASSWORD">
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            <div id="passwordHelpBlock" class="form-text">
+                Your password must be 8-30 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+            </div>
+
+            <label for="inputPassword5" class="form-label">Confirm Password</label>
+            <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Confirm Password" style="min-width:500px" name="ConfirmPassword">
+            @*@Html.ValidationMessageFor(model => model.PasswordNL, "", new { @class = "text-danger" })*@
+            <div style="padding-top: 20px; text-align: center;">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

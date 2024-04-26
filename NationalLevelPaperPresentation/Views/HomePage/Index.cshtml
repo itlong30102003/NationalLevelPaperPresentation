@@ -1,0 +1,141 @@
+﻿@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    
+
+    #Card .social_icons_rounded {
+        background-color: antiquewhite;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        margin: 0 35% 0 25%
+    }
+
+    #Card h4 {
+        font-weight: bold;
+        color: darkred;
+        margin: 5% 0 8% 0
+    }
+
+    #Card .icon {
+        font-size: 90px;
+        margin: 15%;
+        color: darkred
+    }
+
+    #Card p {
+        margin: 1% 10% 0 5%
+    }
+
+    #Card .social_icons_rounded:hover {
+        background-color: snow;
+    }
+    .image-container {
+        width: 100%; /* Đảm bảo rằng khung chứa hình ảnh chiếm toàn bộ chiều rộng của col-md-6 */
+        max-width: 300px; /* Đặt kích thước tối đa của khung chứa hình ảnh */
+        height: 300px; /* Tự động tính toán chiều cao dựa trên tỷ lệ khung hình */
+        margin: 0 auto; /* Canh giữa khung chứa hình ảnh */
+    }
+
+        .image-container img {
+            width: 100%; /* Đảm bảo rằng hình ảnh chiếm toàn bộ không gian trong khung chứa */
+            height: 300px; /* Tự động tính toán chiều cao dựa trên tỷ lệ khung hình */
+        }
+</style>
+
+<div>
+    <h2 class="text-center" style="font-weight:bold; color:darkred">Welcome to ĐLL-National Level Paper Presentation</h2>
+    <hr style="width: 5%; border: 3px solid darkred; border-radius: 5px; margin: 2% 50% 0 45%; " />
+
+    <div id="Card" class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+            <div class="card border-0">
+                <div class="card-body text-center">
+                    <div class="social_icons_rounded"><i class="fa fa-user-md icon"></i> </div>
+                    <h4>Activiy</h4>
+                    <p>
+                        Always have good working skills and a high level of understanding at work
+                        .
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+            <div class="card border-0">
+                <div class="card-body text-center">
+                    <div class="social_icons_rounded"><i class="fa fa-stethoscope icon"></i> </div>
+                    <h4>Participant</h4>
+                    <p>
+                        Have experience working at companies and working remotely or otherwise...
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+            <div class="card border-0">
+                <div class="card-body text-center">
+                    <div class="social_icons_rounded"><i class="fa fa-balance-scale icon"></i> </div>
+                    <h4>EFFECTIVE</h4>
+                    <p>
+                        Highlight your skills, experiences, and showcase a portfolio of your work..
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 my-5">
+            <div class="card border-0">
+                <div class="card-body text-center">
+                    <div class="social_icons_rounded"><i class="fa fa-building icon"></i> </div>
+                    <h4>REPUTATION</h4>
+                    <p>Deliver High-Quality Work,Effective,Resolve Issues Professionally...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center" style="font-weight:bold; color:darkred">New Activity</h2>
+    <hr>
+    <div class="row text-center">
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="image-container">
+                            <img src="@item.Image" class="img-responsive center-block" alt="Thumbnail Image">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="description">
+                            <h2 class="text-center" style="font-weight:bold; color:darkred">@item.name</h2>
+                            <p>@item.Description</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-info" onclick="window.location.href='@Url.Action("Participant","User", new { id = item.activity_id })'">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+
+
+        <p> Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </p>
+
+        @Html.PagedListPager(
+            (PagedList.IPagedList)Model,
+            page => Url.Action("Index", new { page = page })
+        )
+    </div>
+</div>
+
+
+
+

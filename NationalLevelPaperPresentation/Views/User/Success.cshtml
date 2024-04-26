@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/LayoutNavbar.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center" style="padding-top: 30px; height: 110vh">
+        <div class="col-md-7">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Registration Successful!</h4>
+                <p>Your registration has been successfully submitted. Thank you!</p>
+                <hr>
+                <p class="mb-0">You may now return to <a href="@Url.Action("Participant", "User")">registration form</a> or perform other actions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
